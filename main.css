@@ -1,17 +1,25 @@
 body {
   background-color:rgb(247, 217, 191);
-}
-
-img {
-  width: 250px;
-  margin: 10px;
+  font-family: 'Ubuntu', sans-serif;
 }
 
 h1 {
   text-align: center;
 }
 
-#pet-pen {
+.filter-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+button {
+  font-size: 12pt;
+  padding: 5px 15px;
+  margin: 10px;
+  align-content: center;
+}
+
+#pet-list {
   display: flex;
   flex-flow: row wrap;
 }
@@ -22,6 +30,7 @@ h1 {
   margin: 10px;
   text-align: center;
   overflow-wrap: normal;
+  text-justify: distribute;
   flex-basis: 25%;
   flex-grow: 1;
 }
@@ -36,25 +45,34 @@ h1 {
   color: black;
 }
 
-.type {
-/* NEED TO FIX HEIGHT/SIZE */
-  text-align: center;
-  padding: 5px;
-  font-size: 12pt;
-  border-top: solid 2px rgb(53, 52, 52);
-}
-
-button {
-  font-size: 12pt;
-  padding: 5px 15px;
+img {
+  width: 250px;
   margin: 10px;
-  align-self: center;
-}
-
-.filter-buttons {
-  display: flexbox;
 }
 
 p {
   padding: 5px;
+ 
 }
+
+.type {
+  text-align: center;
+  padding: 15px;
+  font-size: 12pt;
+  border-top: solid 2px rgb(53, 52, 52);
+}
+
+#cat {
+  background-color: lightskyblue;
+}
+
+#dog {
+  background-color: gold;
+}
+
+#dino {
+  background-color: limegreen;
+}
+
+
+

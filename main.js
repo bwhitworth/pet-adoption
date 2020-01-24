@@ -174,7 +174,7 @@ const pets = [
     color: "Red",
     specialSkill: "Knows the words to 4 rap songs.",
     type: "cat",
-    imageUrl: "http://funbk.s3.amazonaws.com/wp-content/uploads/2016/06/funny-cat-video-which-will-make-you-laugh-louder.jpg"
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=http%3A%2F%2Fwww.thatmutt.com%2Fweb%2Fwp-content%2Fuploads%2F2014%2F11%2FCleo-the-black-cat-for-adoption.jpg&f=1&nofb=1"
   },
   {
     name: "Bubba",
@@ -202,14 +202,14 @@ const pets = [
     color: "Green",
     specialSkill: "Gives hugs with appropriate pressure and for the right length of time.",
     type: "cat",
-    imageUrl: "http://img.izismile.com/img/img2/20090219/cats_02.jpg"
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.litter-robot.com%2Fblog%2Fwp-content%2Fuploads%2F2016%2F08%2FHand-petting-cat-purring-468x312.jpg&f=1&nofb=1"
   },
   {
     name: "Lucy",
     color: "Red",
     specialSkill: "Doesn’t get weirded out by the word “moist.”",
     type: "dino",
-    imageUrl: "http://lsae2.iypcdn.com/static//modules/uploads/photos/language1/dino-live-22.jpg?119"
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fcdn.mos.cms.futurecdn.net%2FvgRDupDLvFfQxAFDFRqZ2f-320-80.jpg&f=1&nofb=1"
   }
 ];
 
@@ -226,11 +226,83 @@ const makePetCards = () => {
     domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
     domString +=    `<p>${pets[i].color}</p>`;
     domString +=    `<p>${pets[i].specialSkill}</p>`;
-    domString +=    `<div class="type">${pets[i].type}</div>`;
+        if (pets[i].type === "cat") {
+          domString += `<div class="type" id="cat">${pets[i].type}</div>`
+        } else if (pets[i].type === "dog") {
+          domString += `<div class="type" id="dog">${pets[i].type}</div>`
+        } else {
+          domString += `<div class="type" id="dino">${pets[i].type}</div>`
+        };
     domString += '</div>';
   }
-  printToDom('pet-pen', domString);
+  printToDom('pet-list', domString);
 
 };
 
 makePetCards();
+
+const filterCats = () => {
+  let domString = '';
+  for (let i = 0; i < pets.length; i++) {
+    if (pets[i].type === "cat") {
+    domString += '<div class="pet">';
+    domString +=    `<div class="title">${pets[i].name}</div>`;
+    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
+    domString +=    `<p>${pets[i].color}</p>`;
+    domString +=    `<p>${pets[i].specialSkill}</p>`;
+    domString += `<div class="type" id="cat">${pets[i].type}</div>`
+    domString += '</div>';
+  printToDom('pet-list', domString);
+    }
+};
+}
+
+const catButtonElement = document.getElementById('catbtn');
+catButtonElement.addEventListener('click', function (event) {
+  filterCats();
+});
+
+const filterDogs = () => {
+  let domString = '';
+  for (let i = 0; i < pets.length; i++) {
+    if (pets[i].type === "dog") {
+    domString += '<div class="pet">';
+    domString +=    `<div class="title">${pets[i].name}</div>`;
+    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
+    domString +=    `<p>${pets[i].color}</p>`;
+    domString +=    `<p>${pets[i].specialSkill}</p>`;
+    domString += `<div class="type" id="dog">${pets[i].type}</div>`
+    domString += '</div>';
+  printToDom('pet-list', domString);
+    }
+};
+}
+
+const dogButtonElement = document.getElementById('dogbtn');
+dogButtonElement.addEventListener('click', function (event) {
+  filterDogs();
+});
+
+
+const filterDinos = () => {
+  let domString = '';
+  for (let i = 0; i < pets.length; i++) {
+    if (pets[i].type === "dino") {
+    domString += '<div class="pet">';
+    domString +=    `<div class="title">${pets[i].name}</div>`;
+    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
+    domString +=    `<p>${pets[i].color}</p>`;
+    domString +=    `<p>${pets[i].specialSkill}</p>`;
+    domString += `<div class="type" id="dino">${pets[i].type}</div>`
+    domString += '</div>';
+  printToDom('pet-list', domString);
+    }
+};
+}
+
+const dinoButtonElement = document.getElementById('dinobtn');
+dinoButtonElement.addEventListener('click', function (event) {
+  filterDinos();
+});
+
+
