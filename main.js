@@ -222,11 +222,11 @@ const makePetCards = () => {
   let domString = '';
   for (let i = 0; i < pets.length; i++) {
     domString += '<div class="pet">';
-    domString +=    `<h2>${pets[i].name}</h2>`;
+    domString +=    `<div class="title">${pets[i].name}</div>`;
     domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
     domString +=    `<p>${pets[i].color}</p>`;
     domString +=    `<p>${pets[i].specialSkill}</p>`;
-    domString +=    `<h3>${pets[i].type}</h3>`;
+    domString +=    `<div class="type">${pets[i].type}</div>`;
     domString += '</div>';
   }
   printToDom('pet-pen', domString);

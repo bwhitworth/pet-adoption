@@ -1,3 +1,60 @@
 body {
-  background-color: powderblue;
+  background-color:rgb(247, 217, 191);
+}
+
+img {
+  width: 250px;
+  margin: 10px;
+}
+
+h1 {
+  text-align: center;
+}
+
+#pet-pen {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.pet {
+  border: solid 2px rgb(53, 52, 52);
+  background-color: whitesmoke;
+  margin: 10px;
+  text-align: center;
+  overflow-wrap: normal;
+  flex-basis: 25%;
+  flex-grow: 1;
+}
+
+.title {
+  background-color: lightgray;
+  text-align: center;
+  padding: 12px;
+  font-size: 16pt;
+  border-bottom: solid 2px rgb(53, 52, 52);
+  font-weight: bold;
+  color: black;
+}
+
+.type {
+/* NEED TO FIX HEIGHT/SIZE */
+  text-align: center;
+  padding: 5px;
+  font-size: 12pt;
+  border-top: solid 2px rgb(53, 52, 52);
+}
+
+button {
+  font-size: 12pt;
+  padding: 5px 15px;
+  margin: 10px;
+  align-self: center;
+}
+
+.filter-buttons {
+  display: flexbox;
+}
+
+p {
+  padding: 5px;
 }
