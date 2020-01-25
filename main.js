@@ -1,5 +1,3 @@
-console.log('Pet-adoption');
-
 const pets = [
   {
     name: "Dusty",
@@ -132,7 +130,7 @@ const pets = [
     color: "Blue",
     specialSkill: "Listens attentively to boring stories.",
     type: "dog",
-    imageUrl: "http://dailynewsdig.com/wp-content/uploads/2014/03/Creative-And-Funny-Dog-Stock-Photography-Pictures-2.jpg"
+    imageUrl: "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fusercontent1.hubstatic.com%2F8766282_f520.jpg&f=1&nofb=1"
   },
   {
     name: "Spooky",
@@ -218,14 +216,14 @@ const printToDom = (divId, textToPrint) => {
   selectedDiv.innerHTML = textToPrint;
 };
 
-const makePetCards = () => {
+const makePetCards = (newFilter) => {
   let domString = '';
   for (let i = 0; i < pets.length; i++) {
-    domString += '<div class="pet">';
-    domString +=    `<div class="title">${pets[i].name}</div>`;
-    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
+    domString += `<div class="pet">`;
+    domString +=    `<div class="name">${pets[i].name}</div>`;
+    domString +=    `<div><img src=${pets[i].imageUrl} alt="Photo">`
     domString +=    `<p>${pets[i].color}</p>`;
-    domString +=    `<p>${pets[i].specialSkill}</p>`;
+    domString +=    `<p>${pets[i].specialSkill}</p></div>`;
         if (pets[i].type === "cat") {
           domString += `<div class="type" id="cat">${pets[i].type}</div>`
         } else if (pets[i].type === "dog") {
@@ -233,7 +231,7 @@ const makePetCards = () => {
         } else {
           domString += `<div class="type" id="dino">${pets[i].type}</div>`
         };
-    domString += '</div>';
+    domString += `</div>`;
   }
   printToDom('pet-list', domString);
 
@@ -241,17 +239,18 @@ const makePetCards = () => {
 
 makePetCards();
 
-const filterCats = () => {
+
+const filterType = (newFilter) => {
   let domString = '';
   for (let i = 0; i < pets.length; i++) {
-    if (pets[i].type === "cat") {
-    domString += '<div class="pet">';
-    domString +=    `<div class="title">${pets[i].name}</div>`;
-    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
+    if (pets[i].type === newFilter) {
+    domString += `<div class="pet">`;
+    domString +=    `<div class="name">${pets[i].name}</div>`;
+    domString +=    `<div><img src=${pets[i].imageUrl} alt="Photo">`
     domString +=    `<p>${pets[i].color}</p>`;
-    domString +=    `<p>${pets[i].specialSkill}</p>`;
-    domString += `<div class="type" id="cat">${pets[i].type}</div>`
-    domString += '</div>';
+    domString +=    `<p>${pets[i].specialSkill}</p></div>`;
+    domString += `<div class="type" id="${newFilter}">${pets[i].type}</div>`
+    domString += `</div>`;
   printToDom('pet-list', domString);
     }
 };
@@ -259,50 +258,15 @@ const filterCats = () => {
 
 const catButtonElement = document.getElementById('catbtn');
 catButtonElement.addEventListener('click', function (event) {
-  filterCats();
+  filterType('cat');
 });
-
-const filterDogs = () => {
-  let domString = '';
-  for (let i = 0; i < pets.length; i++) {
-    if (pets[i].type === "dog") {
-    domString += '<div class="pet">';
-    domString +=    `<div class="title">${pets[i].name}</div>`;
-    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
-    domString +=    `<p>${pets[i].color}</p>`;
-    domString +=    `<p>${pets[i].specialSkill}</p>`;
-    domString += `<div class="type" id="dog">${pets[i].type}</div>`
-    domString += '</div>';
-  printToDom('pet-list', domString);
-    }
-};
-}
 
 const dogButtonElement = document.getElementById('dogbtn');
 dogButtonElement.addEventListener('click', function (event) {
-  filterDogs();
+  filterType('dog');
 });
-
-
-const filterDinos = () => {
-  let domString = '';
-  for (let i = 0; i < pets.length; i++) {
-    if (pets[i].type === "dino") {
-    domString += '<div class="pet">';
-    domString +=    `<div class="title">${pets[i].name}</div>`;
-    domString +=    `<img src=${pets[i].imageUrl} alt="Photo">`
-    domString +=    `<p>${pets[i].color}</p>`;
-    domString +=    `<p>${pets[i].specialSkill}</p>`;
-    domString += `<div class="type" id="dino">${pets[i].type}</div>`
-    domString += '</div>';
-  printToDom('pet-list', domString);
-    }
-};
-}
 
 const dinoButtonElement = document.getElementById('dinobtn');
 dinoButtonElement.addEventListener('click', function (event) {
-  filterDinos();
+  filterType('dino');
 });
-
-
