@@ -62,15 +62,15 @@ p {
  
 }
 
-#cat {
+.cat {
   background-color: lightskyblue;
 }
 
-#dog {
+.dog {
   background-color: gold;
 }
 
-#dino {
+.dino {
   background-color: limegreen;
 }
 

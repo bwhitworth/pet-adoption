@@ -216,20 +216,20 @@ const printToDom = (divId, textToPrint) => {
   selectedDiv.innerHTML = textToPrint;
 };
 
-const makePetCards = (newFilter) => {
+const makePetCards = (arr) => {
   let domString = '';
-  for (let i = 0; i < pets.length; i++) {
+  for (let i = 0; i < arr.length; i++) {
     domString += `<div class="pet">`;
-    domString +=    `<div class="name">${pets[i].name}</div>`;
-    domString +=    `<div><img src=${pets[i].imageUrl} alt="Photo">`
-    domString +=    `<p>${pets[i].color}</p>`;
-    domString +=    `<p>${pets[i].specialSkill}</p></div>`;
-        if (pets[i].type === "cat") {
-          domString += `<div class="type" id="cat">${pets[i].type}</div>`
-        } else if (pets[i].type === "dog") {
-          domString += `<div class="type" id="dog">${pets[i].type}</div>`
+    domString +=    `<div class="name">${arr[i].name}</div>`;
+    domString +=    `<div><img src=${arr[i].imageUrl} alt="Photo">`
+    domString +=    `<p>${arr[i].color}</p>`;
+    domString +=    `<p>${arr[i].specialSkill}</p></div>`;
+        if (arr[i].type === "cat") {
+          domString += `<div class="type cat">${arr[i].type}</div>`
+        } else if (arr[i].type === "dog") {
+          domString += `<div class="type dog">${arr[i].type}</div>`
         } else {
-          domString += `<div class="type" id="dino">${pets[i].type}</div>`
+          domString += `<div class="type dino">${arr[i].type}</div>`
         };
     domString += `</div>`;
   }
@@ -237,36 +237,31 @@ const makePetCards = (newFilter) => {
 
 };
 
-makePetCards();
-
-
-const filterType = (newFilter) => {
-  let domString = '';
-  for (let i = 0; i < pets.length; i++) {
-    if (pets[i].type === newFilter) {
-    domString += `<div class="pet">`;
-    domString +=    `<div class="name">${pets[i].name}</div>`;
-    domString +=    `<div><img src=${pets[i].imageUrl} alt="Photo">`
-    domString +=    `<p>${pets[i].color}</p>`;
-    domString +=    `<p>${pets[i].specialSkill}</p></div>`;
-    domString += `<div class="type" id="${newFilter}">${pets[i].type}</div>`
-    domString += `</div>`;
-  printToDom('pet-list', domString);
-    }
+const filterMyPets = (e) => {
+  const buttonId = e.target.id;
+  if (buttonId === 'All') {
+    makePetCards(pets)
+  } else {
+    const filteredPets = [];
+    for (let i = 0; i < pets.length; i++) {
+      if (pets[i].type === buttonId) {
+        filteredPets.push(pets[i]);
+      }
+      }
+      makePetCards(filteredPets);
+  }
 };
-}
 
-const catButtonElement = document.getElementById('catbtn');
-catButtonElement.addEventListener('click', function (event) {
-  filterType('cat');
-});
+const events = () => {
+  document.getElementById('All').addEventListener('click', filterMyPets);
+  document.getElementById('cat').addEventListener('click', filterMyPets);
+  document.getElementById('dog').addEventListener('click', filterMyPets);
+  document.getElementById('dino').addEventListener('click', filterMyPets);
+};
 
-const dogButtonElement = document.getElementById('dogbtn');
-dogButtonElement.addEventListener('click', function (event) {
-  filterType('dog');
-});
+const init = () => {
+  makePetCards(pets);
+  events();
+};
 
-const dinoButtonElement = document.getElementById('dinobtn');
-dinoButtonElement.addEventListener('click', function (event) {
-  filterType('dino');
-});
+init();
